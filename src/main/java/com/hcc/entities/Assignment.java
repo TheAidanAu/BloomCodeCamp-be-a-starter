@@ -16,8 +16,8 @@ public class Assignment {
     public Assignment() {
     }
 
-    public Assignment(Long id, String status, Integer number, String githubUrl, String branch, String reviewVideoUrl, User user, User codeReviewer) {
-        this.id = id;
+    // All args except id constructor
+    public Assignment(String status, Integer number, String githubUrl, String branch, String reviewVideoUrl, User user, User codeReviewer) {
         this.status = status;
         this.number = number;
         this.githubUrl = githubUrl;

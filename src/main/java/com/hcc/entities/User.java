@@ -15,8 +15,8 @@ public class User {
     public User() {
     }
 
-    public User(Long id, Date cohortStartDate, String username, String password, List<Authority> authorities) {
-        this.id = id;
+    // All args except id constructor
+    public User(Date cohortStartDate, String username, String password, List<Authority> authorities) {
         this.cohortStartDate = cohortStartDate;
         this.username = username;
         this.password = password;

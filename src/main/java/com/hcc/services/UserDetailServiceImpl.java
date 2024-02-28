@@ -1,23 +1,23 @@
 package com.hcc.services;
 
-// import com.hcc.entities.User;
-// import com.hcc.repositories.UserRepository;
-// import com.hcc.utils.CustomPasswordEncoder;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.security.core.userdetails.UserDetails;
-// import org.springframework.security.core.userdetails.UserDetailsService;
-// import org.springframework.security.core.userdetails.UsernameNotFoundException;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import com.hcc.entities.User;
+//import com.hcc.repositories.UserRepository;
+import com.hcc.utils.CustomPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 
 // uncomment this class once you have created all of the needed parts
-//@Service
-//public class UserDetailServiceImpl implements UserDetailsService {
-//    @Autowired
-//    CustomPasswordEncoder passwordEncoder;
+@Service
+public class UserDetailServiceImpl implements UserDetailsService {
+    @Autowired
+    CustomPasswordEncoder passwordEncoder;
 
 //    @Autowired
     // UserRepository userRepo;
@@ -30,3 +30,23 @@ import java.util.Optional;
       //  return userOpt.orElseThrow(() -> new UsernameNotFoundException("Invalid Credentials"));
 //    }
 //}
+
+    // this is added from the ticket requirement
+ @Override
+ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+     User user = new User();
+     user.setUsername(username);
+     user.setPassword(passwordEncoder.getPasswordEncoder().encode("asdfasdf"));
+     return new org.springframework.security.core.userdetails.User(
+             user.getUsername(),
+             user.getPassword(),
+             user.isEnabled(),
+             user.isAccountNonExpired(),
+             user.isCredentialsNonExpired(),
+             user.isAccountNonLocked(),
+             user.getAuthorities()
+     );
+ }
+}
+
+

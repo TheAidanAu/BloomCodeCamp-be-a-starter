@@ -37,15 +37,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
      User user = new User();
      user.setUsername(username);
      user.setPassword(passwordEncoder.getPasswordEncoder().encode("asdfasdf"));
-     return new org.springframework.security.core.userdetails.User(
-             user.getUsername(),
-             user.getPassword(),
-             user.isEnabled(),
-             user.isAccountNonExpired(),
-             user.isCredentialsNonExpired(),
-             user.isAccountNonLocked(),
-             user.getAuthorities()
-     );
+     return user;
  }
 }
 
